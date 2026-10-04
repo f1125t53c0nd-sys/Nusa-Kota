@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nusa Kota — Kota Favorit Indonesia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sea:#0a8fc7;--sea2:#0677a8;--deep:#062a3d;--ink:#041923;--lime:#c8ff2e;--coral:#ff6b57;--sun:#ffc93c;--pink:#ff7ad9;--paper:#e8f0f2;--white:#fff;
+--display:'Anton','Impact','Arial Narrow',sans-serif;--body:'Space Grotesk','Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.6}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(46px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.left{transform:translateX(-60px)}.reveal.right{transform:translateX(60px)}.reveal.zoom{transform:scale(.85)}
+.reveal.in{opacity:1;transform:none}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+nav.solid{background:rgba(4,25,35,.92);backdrop-filter:blur(10px);box-shadow:0 2px 0 var(--lime)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:26px;text-transform:uppercase;letter-spacing:.04em}
+.logo i{width:34px;height:34px;background:var(--lime);color:var(--ink);display:grid;place-items:center;border-radius:50% 50% 50% 8px;font-style:normal;font-size:18px}
+.links{display:flex;gap:30px;font-weight:500;font-size:15px}
+.links a{position:relative;padding:4px 0}
+.links a:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--lime);transition:width .3s}
+.links a:hover:after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;border:2px solid var(--lime);background:var(--lime);color:var(--ink);cursor:pointer;font-family:var(--body);transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink)}
+.btn.ghost{background:transparent;color:var(--white);border-color:var(--white)}
+.btn.ghost:hover{background:var(--white);color:var(--ink)}
+.menu-btn{display:none;background:none;border:2px solid var(--lime);color:var(--lime);border-radius:10px;width:44px;height:44px;font-size:22px;cursor:pointer}
+
+/* hero */
+.hero{position:relative;background:var(--sea);padding:150px 0 130px;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.22),transparent 45%),radial-gradient(circle at 10% 90%,rgba(6,42,61,.55),transparent 50%)}
+.wave{position:absolute;left:0;right:0;bottom:-2px;height:90px;width:100%}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(66px,12vw,176px);color:var(--lime);text-shadow:6px 6px 0 var(--deep)}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:3px var(--white);text-shadow:none}
+.hero p{max-width:480px;font-size:18px;margin:26px 0 32px;color:#eaf8ff}
+.stats{display:flex;gap:34px;margin-bottom:34px;flex-wrap:wrap}
+.stat{border-left:4px solid var(--lime);padding-left:14px}
+.stat b{font-family:var(--display);font-weight:400;font-size:46px;display:block;line-height:1}
+.stat small{font-size:14px;color:#d4f1ff}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art{position:relative;aspect-ratio:1;max-width:430px;margin:0 auto;width:100%}
+.disc{position:absolute;inset:6%;border-radius:50%;background:conic-gradient(from 30deg,var(--sun),var(--coral),var(--pink),var(--lime),var(--sun));display:grid;place-items:center;font-size:clamp(110px,18vw,190px);box-shadow:10px 10px 0 var(--deep);animation:spin 28s linear infinite}
+.disc span{animation:spin 28s linear infinite reverse}
+.sticker{position:absolute;padding:10px 18px;border-radius:14px;font-weight:700;font-size:15px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--ink);animation:float 5s ease-in-out infinite}
+.s1{top:2%;left:-6%;background:var(--lime)}.s2{top:42%;right:-8%;background:var(--white);animation-delay:-1.5s}.s3{bottom:2%;left:6%;background:var(--pink);animation-delay:-3s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{50%{transform:translateY(-14px) rotate(-2deg)}}
+
+/* marquee */
+.marquee{background:var(--lime);color:var(--ink);transform:rotate(-1.6deg);margin:-34px -20px 0;position:relative;z-index:5;overflow:hidden;border-block:3px solid var(--ink)}
+.track{display:flex;width:max-content;animation:run 30s linear infinite}
+.track span{font-family:var(--display);text-transform:uppercase;font-size:clamp(28px,4vw,46px);padding:14px 26px;white-space:nowrap}
+.track em{font-style:normal;color:var(--sea2)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:110px 0}
+.tag{display:inline-block;font-weight:700;font-size:14px;padding:6px 16px;border-radius:999px;background:var(--lime);color:var(--ink);margin-bottom:20px}
+.sec-title{font-size:clamp(42px,6vw,82px);max-width:820px}
+.sub{max-width:560px;margin-top:18px;color:#b9d3df}
+.rank{background:var(--ink);padding-top:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.card{position:relative;border-radius:26px;padding:28px;color:var(--ink);overflow:hidden;border:3px solid var(--ink);box-shadow:0 0 0 0 var(--lime);transition:transform .35s,box-shadow .35s;min-height:300px;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:8px 8px 0 var(--lime)}
+.card .pos{position:absolute;top:14px;right:20px;font-family:var(--display);font-size:78px;opacity:.22;line-height:1}
+.card .emo{font-size:60px;line-height:1;margin-bottom:14px;display:inline-block;transition:transform .4s}
+.card:hover .emo{transform:scale(1.2) rotate(8deg)}
+.card h3{font-size:38px;margin-bottom:8px}
+.card p{font-size:15px;font-weight:500;flex:1}
+.bar{height:12px;background:rgba(4,25,35,.2);border-radius:99px;margin-top:20px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1) .3s}
+.votes{display:flex;justify-content:space-between;font-weight:700;margin-top:10px}
+.card.top{box-shadow:0 0 0 4px var(--lime)}
+.badge{position:absolute;top:18px;left:24px;background:var(--ink);color:var(--lime);font-weight:700;font-size:12px;padding:4px 12px;border-radius:99px}
+.card .emo{margin-top:22px}
+
+/* why */
+.why{background:var(--paper);color:var(--ink);position:relative}
+.why .sub{color:#35505d}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.tile{border-radius:26px;padding:30px;border:3px solid var(--ink);background:var(--white);transition:transform .35s}
+.tile:hover{transform:translateY(-6px)}
+.tile b{display:grid;place-items:center;width:64px;height:64px;border-radius:18px;font-size:32px;margin-bottom:18px;border:3px solid var(--ink)}
+.tile h3{font-size:30px;margin-bottom:8px}
+.tile:nth-child(1) b{background:var(--sun)}.tile:nth-child(2) b{background:var(--pink)}.tile:nth-child(3) b{background:var(--lime)}
+.iconbar{margin-top:44px;background:var(--ink);border-radius:26px;padding:26px 34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.iconbar span{font-size:40px;transition:transform .3s;cursor:default}
+.iconbar span:hover{transform:translateY(-8px) scale(1.2)}
+
+/* vote */
+.vote{background:var(--sea);position:relative}
+.vote .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.vote .sub{color:#e6f7ff}
+form{background:var(--ink);border-radius:28px;padding:34px;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--lime)}
+label{display:block;font-weight:700;font-size:14px;margin:0 0 6px}
+input,select,textarea{width:100%;padding:14px 16px;border-radius:14px;border:2px solid #1d4a60;background:#0a2f42;color:var(--white);font:inherit;margin-bottom:18px;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--lime)}
+textarea{min-height:110px;resize:vertical}
+form .btn{width:100%;justify-content:center;font-size:17px}
+.btn[disabled]{opacity:.6;cursor:wait}
+#msg{margin-top:16px;font-weight:700;min-height:24px}
+#msg.ok{color:var(--lime)}#msg.err{color:var(--coral)}
+
+/* reviews */
+.reviews{background:var(--deep)}
+.rgrid{columns:3;column-gap:22px;margin-top:50px}
+.rev{break-inside:avoid;margin-bottom:22px;border-radius:24px;padding:24px;border:3px solid var(--ink);color:var(--ink);transition:transform .3s}
+.rev:hover{transform:rotate(-1deg) scale(1.02)}
+.rev p{font-weight:500;margin:10px 0 16px}
+.rev small{font-weight:700}
+.rev .c{display:inline-block;background:var(--ink);color:var(--white);font-weight:700;font-size:13px;padding:4px 12px;border-radius:99px}
+.empty{grid-column:1/-1;text-align:center;color:#b9d3df;padding:30px}
+
+footer{background:var(--lime);color:var(--ink);padding:70px 0 30px;overflow:hidden}
+footer h2{font-size:clamp(54px,13vw,190px);line-height:.9;white-space:nowrap}
+footer p{margin-top:26px;font-weight:700;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media(max-width:900px){
+.links{display:none;position:absolute;top:74px;left:0;right:0;background:var(--ink);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:3px solid var(--lime)}
+.links.open{display:flex}.menu-btn{display:block}.nav>.btn{display:none}
+.hero .wrap,.vote .wrap{grid-template-columns:1fr}.hero{padding:120px 0 120px}
+.grid,.tiles{grid-template-columns:1fr}.rgrid{columns:1}
+.hero-art{max-width:320px}.s1{left:0}.s2{right:0}
+section{padding:80px 0}.rank{padding-top:120px}
+}
+@media(min-width:620px) and (max-width:900px){.grid,.tiles{grid-template-columns:1fr 1fr}.rgrid{columns:2}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap nav">
+  <a href="#home" class="logo"><i>★</i>Nusa Kota</a>
+  <div class="links" id="links">
+    <a href="#home">Beranda</a><a href="#ranking">Peringkat</a><a href="#kenapa">Kenapa Kota</a><a href="#vote">Pilih Kota</a><a href="#ulasan">Ulasan</a>
+  </div>
+  <a href="#vote" class="btn">Pilih kota favoritmu</a>
+  <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+</div></nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <h1 class="reveal">Kota Favorit <span>Indonesia</span></h1>
+      <p class="reveal" style="--d:.15s">Dari pantai Bali sampai angkringan Jogja, ribuan orang sudah memilih. Kota mana yang paling kamu cintai?</p>
+      <div class="stats reveal" style="--d:.25s">
+        <div class="stat"><b id="stVotes">0</b><small>Total suara</small></div>
+        <div class="stat"><b id="stCities">0</b><small>Kota dipilih</small></div>
+        <div class="stat"><b id="stReviews">0</b><small>Ulasan masuk</small></div>
+      </div>
+      <div class="cta reveal" style="--d:.35s"><a href="#vote" class="btn">Beri suara sekarang</a><a href="#ranking" class="btn ghost">Lihat peringkat</a></div>
+    </div>
+    <div class="hero-art reveal zoom" style="--d:.3s">
+      <div class="disc"><span>🏝️</span></div>
+      <div class="sticker s1">Kuliner enak 🍜</div>
+      <div class="sticker s2">Budaya kaya 🎭</div>
+      <div class="sticker s3">Alam indah 🌋</div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#041923" d="M0 50c120 30 240 30 360 5s240-45 360-35 240 55 360 55 240-25 360-45v60H0z"/></svg>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="rank" id="ranking"><div class="wrap">
+  <span class="tag reveal">Peringkat langsung</span>
+  <h2 class="sec-title reveal" style="--d:.1s">Kota yang paling banyak dicintai</h2>
+  <p class="sub reveal" style="--d:.2s">Peringkat diperbarui otomatis dari suara yang tersimpan di spreadsheet.</p>
+  <div class="grid" id="rankGrid"></div>
+</div></section>
+
+<section class="why" id="kenapa"><div class="wrap">
+  <span class="tag reveal">Alasan jatuh cinta</span>
+  <h2 class="sec-title reveal" style="--d:.1s">Satu negeri, ribuan cerita kota</h2>
+  <p class="sub reveal" style="--d:.2s">Setiap kota punya cara sendiri untuk bikin orang betah, kangen, dan ingin kembali.</p>
+  <div class="tiles">
+    <div class="tile reveal left"><b>🍛</b><h3>Kuliner</h3><p>Gudeg, soto, pempek, coto, sampai sate lilit. Rasa jadi alasan nomor satu orang pulang ke sebuah kota.</p></div>
+    <div class="tile reveal" style="--d:.15s"><b>🎭</b><h3>Budaya</h3><p>Keraton, pura, pasar tradisional, dan festival yang membuat tiap kota terasa punya jiwa.</p></div>
+    <div class="tile reveal right" style="--d:.3s"><b>🌅</b><h3>Suasana</h3><p>Pantai, pegunungan, dan jalanan malam yang hangat. Kota favorit adalah kota yang bikin rileks.</p></div>
+  </div>
+  <div class="iconbar reveal zoom"><span>🏖️</span><span>🍜</span><span>🌋</span><span>🛕</span><span>🚤</span><span>☕</span><span>🎨</span><span>🏙️</span></div>
+</div></section>
+
+<section class="vote" id="vote"><div class="wrap">
+  <div>
+    <span class="tag reveal" style="background:var(--ink);color:var(--lime)">Giliran kamu</span>
+    <h2 class="sec-title reveal" style="--d:.1s">Pilih kota favoritmu</h2>
+    <p class="sub reveal" style="--d:.2s">Isi form di samping. Suaramu langsung masuk ke Google Spreadsheet dan tampil di peringkat.</p>
+  </div>
+  <form id="voteForm" class="reveal right" novalidate>
+    <label for="name">Nama</label>
+    <input id="name" name="name" maxlength="40" placeholder="Nama kamu" required autocomplete="name">
+    <label for="city">Kota favorit</label>
+    <select id="city" name="city" required></select>
+    <label for="reason">Kenapa kota ini?</label>
+    <textarea id="reason" name="reason" maxlength="240" placeholder="Ceritakan alasanmu singkat saja" required></textarea>
+    <button class="btn" id="submitBtn" type="submit">Kirim suara</button>
+    <div id="msg" role="status" aria-live="polite"></div>
+  </form>
+</div></section>
+
+<section class="reviews" id="ulasan"><div class="wrap">
+  <span class="tag reveal">Kata mereka</span>
+  <h2 class="sec-title reveal" style="--d:.1s">Cerita dari para pemilih</h2>
+  <div class="rgrid" id="revGrid"></div>
+</div></section>
+
+<footer><div class="wrap">
+  <h2 class="reveal">Nusa Kota ★ Indonesia</h2>
+  <p><span>Dibuat untuk merayakan kota-kota Indonesia.</span><span>Data tersimpan di Google Spreadsheet.</span></p>
+</div></footer>
+
+<script src="App.js"></script>
+</body>
+</html>
